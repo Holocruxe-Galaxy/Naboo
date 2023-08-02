@@ -4,6 +4,6 @@ import { FleteService } from './flete.service';
 
 @Module({
   controllers: [FleteController],
-  providers: [FleteService]
+  providers: [FleteService],
 })
 export class FleteModule {}
