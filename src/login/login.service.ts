@@ -7,7 +7,8 @@ import {
   forwardRef,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { objLogin } from 'src/dto/user.dto';
+import { objLogin } from 'src/store/dto/store.dto';
+import { accessVerifyResponse } from './login.interface';
 
 @Injectable()
 export class LoginService {
@@ -24,11 +25,15 @@ export class LoginService {
    * @returns
    */
   async Login(user: objLogin): Promise<boolean> {
-    // const user = await this.httpService.axiosRef.post(<URLFex>,{}).data
-    if (user.accessKey === 'alex' && user.country === 'Argentina') {
-      return true;
-    } else {
-      throw new HttpException('unauthorized', HttpStatus.UNAUTHORIZED);
+    const verify = (
+      await this.httpService.axiosRef.post<accessVerifyResponse>(
+        `${this.configService.get<string>('FEX_URL')}/index`,
+        { acceso: user.accessKey },
+      )
+    ).data;
+    if (!verify.estatus) {
+      throw new HttpException('unauthorize', HttpStatus.UNAUTHORIZED);
     }
+    throw new Error('Method notimplemented');
   }
 }
