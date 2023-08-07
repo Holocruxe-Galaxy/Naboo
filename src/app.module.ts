@@ -10,6 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
 import { LoginService } from './login/login.service';
 import { LoginModule } from './login/login.module';
+import { StoreModule } from './store/store.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { LoginModule } from './login/login.module';
     HttpModule,
     FleteModule,
     LoginModule,
+    StoreModule,
   ],
   controllers: [AppController, LoginController],
   providers: [AppService, LoginService],
