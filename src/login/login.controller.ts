@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpException } from '@nestjs/common';
 import { objLogin } from 'src/store/dto/store.dto';
 import { LoginService } from './login.service';
 @Controller('login')
@@ -6,7 +6,11 @@ export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
   @Post()
-  login(@Body() user: objLogin) {
-    return this.loginService.Login(user);
+  async login(@Body() user: objLogin) {
+    try {
+      return await this.loginService.Login(user);
+    } catch (error) {
+      throw new HttpException(error.message, error.response.status);
+    }
   }
 }

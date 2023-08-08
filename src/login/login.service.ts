@@ -25,6 +25,7 @@ export class LoginService {
    * @returns
    */
   async Login(user: objLogin): Promise<boolean> {
+    /*     try { */
     const verify = (
       await this.httpService.axiosRef.post<accessVerifyResponse>(
         `${this.configService.get<string>('FEX_URL')}/index`,
@@ -34,6 +35,9 @@ export class LoginService {
     if (!verify.estatus) {
       throw new HttpException('unauthorize', HttpStatus.UNAUTHORIZED);
     }
-    throw new Error('Method notimplemented');
+    return true;
+    /*     } catch (error) {
+      throw new HttpException(error.message, error.status);
+    } */
   }
 }
