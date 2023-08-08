@@ -25,19 +25,19 @@ export class LoginService {
    * @returns
    */
   async Login(user: objLogin): Promise<boolean> {
-    /*     try { */
-    const verify = (
-      await this.httpService.axiosRef.post<accessVerifyResponse>(
-        `${this.configService.get<string>('FEX_URL')}/index`,
-        { acceso: user.accessKey },
-      )
-    ).data;
-    if (!verify.estatus) {
-      throw new HttpException('unauthorize', HttpStatus.UNAUTHORIZED);
+    try {
+      const verify = (
+        await this.httpService.axiosRef.post<accessVerifyResponse>(
+          `${this.configService.get<string>('FEX_URL')}/index`,
+          { acceso: user.accessKey },
+        )
+      ).data;
+      if (!verify.estatus) {
+        throw new HttpException('unauthorize', HttpStatus.UNAUTHORIZED);
+      }
+      return true;
+    } catch (error) {
+      throw new HttpException(error.message, error.response.status);
     }
-    return true;
-    /*     } catch (error) {
-      throw new HttpException(error.message, error.status);
-    } */
   }
 }

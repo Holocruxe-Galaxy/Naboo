@@ -6,11 +6,7 @@ export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
   @Post()
-  async login(@Body() user: objLogin) {
-    try {
-      return await this.loginService.Login(user);
-    } catch (error) {
-      throw new HttpException(error.message, error.response.status);
-    }
+  login(@Body() user: objLogin) {
+    return this.loginService.Login(user);
   }
 }
