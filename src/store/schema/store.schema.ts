@@ -16,10 +16,10 @@ export class Store extends Document {
   url: string;
 
   @Prop()
-  latitude: number;
+  store_lat: number;
 
   @Prop()
-  longitude: number;
+  store_lng: number;
 
   @Prop()
   address: string;
