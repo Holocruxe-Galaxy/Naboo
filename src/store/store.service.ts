@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Store } from './schema';
 import { Model } from 'mongoose';
@@ -29,6 +29,10 @@ export class StoreService {
     return await this.storeModel.findById(id);
   }
   async updateStore(store: objStore) {
-    return await this.storeModel.updateOne({ id: store.id }, store);
+    try {
+      return await this.storeModel.updateOne({ id: store.id }, store);
+    } catch (error) {
+      throw new HttpException(error.message, error.response.status);
+    }
   }
 }
