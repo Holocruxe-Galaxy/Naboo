@@ -8,6 +8,7 @@ export class StoreController {
 
   @Patch('config')
   configStore(@Body() store: objStore) {
+    console.log(store);
     return this.storeService.updateStore(store);
   }
 }
