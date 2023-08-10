@@ -10,6 +10,15 @@ export class Store extends Document {
   country: string;
 
   @Prop()
+  city: string;
+
+  @Prop()
+  address: string;
+
+  @Prop()
+  post_code: string;
+
+  @Prop()
   store_name: string;
 
   @Prop()
@@ -20,9 +29,6 @@ export class Store extends Document {
 
   @Prop()
   store_lng: number;
-
-  @Prop()
-  address: string;
 }
 
 export const StoreSchema = SchemaFactory.createForClass(Store);
