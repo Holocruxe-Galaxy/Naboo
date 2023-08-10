@@ -23,6 +23,15 @@ export class objStore {
   country: string;
 
   @IsString()
+  city: string;
+
+  @IsString()
+  address: string;
+
+  @IsString()
+  post_code: string;
+
+  @IsString()
   store_name: string;
 
   @IsString()
@@ -33,7 +42,4 @@ export class objStore {
 
   @IsNumber()
   store_lng: number;
-
-  @IsString()
-  address: string;
 }

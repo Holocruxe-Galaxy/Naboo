@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Store } from './schema';
 import { Model } from 'mongoose';
@@ -22,6 +22,14 @@ export class StoreService {
   ) {}
 
   async createStore(store: objStore): Promise<Store> {
+    const existingStore = await this.storeModel.findOne({
+      access_key: store.access_key,
+    });
+
+    if (existingStore) {
+      // Ya existe un Store con el mismo valor de access_key, corta la ejecución para que no se cree denuevo
+      return;
+    }
     return await this.storeModel.create(store);
   }
 
@@ -29,6 +37,23 @@ export class StoreService {
     return await this.storeModel.findById(id);
   }
   async updateStore(store: objStore) {
-    return await this.storeModel.updateOne({ id: store.id }, store);
+    let storeDb = await this.storeModel.findOne({
+      access_key: store.access_key,
+    });
+    if (storeDb) {
+      // Realiza las actualizaciones necesarias en el objeto `storeDb`
+      storeDb.country = store.country;
+      storeDb.city = store.city;
+      storeDb.address = store.address;
+      storeDb.post_code = store.post_code;
+      storeDb.url = store.url;
+      storeDb.store_lat = store.store_lat;
+      storeDb.store_lng = store.store_lng;
+      // Guarda los cambios en la base de datos
+      await storeDb.save();
+      return 'store configured correctly';
+    } else {
+      throw new HttpException('store not found', HttpStatus.BAD_REQUEST);
+    }
   }
 }
