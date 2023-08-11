@@ -32,7 +32,7 @@ export class FleteService {
           flete,
         )
       ).data;
-      await this.fleteModel.create(newFlete);
+      await this.fleteModel.create(flete);
       return newFlete;
     } catch (error) {
       throw new HttpException(error.message, error.response.status);
@@ -51,6 +51,19 @@ export class FleteService {
     }
     return cost.data as FleteConsultaRespuesta;
   }
+
+  async consultarFlete(ftid: string): Promise<Flete> {
+    try {
+      return this.fleteModel.findById(ftid);
+    } catch (error) {
+      throw new HttpException(error.message, error.status);
+    }
+  }
+
+  // ? private adivinaAdivinadorQueCamionUsoHoy(transporte: Transporte) {
+  // La logica que quiero aplicar acá: En base a la cantida de productos enviados por la empresa, y el "volumen" de las cosas que tiene preconfiguradas el
+  // vendedor (si tiene un aproximado para los productos)
+  // }
 
   // ? private obtenerVehiculo(peso: number): number {
   //   Logica necesaria a aplicar: Que pasa con el volumen del vehiculo, las preferencias del que envia el producto, y la necesidad y/o fragilidad del producto

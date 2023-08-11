@@ -25,7 +25,6 @@ export interface FleteConsulta {
   ori_lng: number;
   des_lat: number;
   des_lng: number;
-  peso: number;
   reg_origen: number;
   vehiculo?: number;
 }
@@ -35,4 +34,9 @@ export interface FleteConsultaRespuesta {
     distancia: string;
     total: number;
   };
+}
+
+export interface Tranporte {
+  categoría: string;
+  cantidad: number;
 }

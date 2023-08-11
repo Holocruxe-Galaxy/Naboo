@@ -18,12 +18,20 @@ export class objConsult {
   des_lat: number;
 
   @IsNotEmpty()
+  @IsString()
+  rec_nom: string;
+
+  @IsNotEmpty()
+  @IsString()
+  rec_tel: string;
+
+  @IsNotEmpty()
   @IsNumber()
   des_lng: number;
 
   @IsNotEmpty()
   @IsNumber()
-  peso: number;
+  vehiculo: number;
 
   @IsNotEmpty()
   @IsNumber()
