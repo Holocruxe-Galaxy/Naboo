@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FleteSolicitude } from './flete.interface';
+import { FleteDto } from './dto/flete.dto';
 
 @Injectable()
 export class FleteService {
@@ -11,11 +12,13 @@ export class FleteService {
     private readonly httpService: HttpService,
   ) {}
 
-  async SolicitarFlete(flete: FleteSolicitude): Promise<boolean> {
+  async SolicitarFlete(flete: FleteDto): Promise<boolean> {
+    console.log(flete);
     const newFlete = await this.httpService.axiosRef.post(
-      this.configService.get<string>('FEX_URL'),
-      flete,
+      `${this.configService.get<string>('FEX_URL')}/flete/solicitar`,
+      flete as FleteSolicitude,
     );
-    throw new Error('Method not implemented');
+    console.log(newFlete.data);
+    return true;
   }
 }
