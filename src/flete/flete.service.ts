@@ -25,7 +25,7 @@ export class FleteService {
     private readonly httpService: HttpService,
   ) {}
 
-  async solicitarFlete(flete: FleteSolicitude): Promise<Flete> {
+  async solicitarFlete(flete: FleteDto): Promise<Flete> {
     try {
       const newFlete = (
         await this.httpService.axiosRef.post(
@@ -59,6 +59,7 @@ export class FleteService {
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }
+  }
 
   // ? private adivinaAdivinadorQueCamionUsoHoy(transporte: Transporte) {
   // La logica que quiero aplicar acá: En base a la cantida de productos enviados por la empresa, y el "volumen" de las cosas que tiene preconfiguradas el
