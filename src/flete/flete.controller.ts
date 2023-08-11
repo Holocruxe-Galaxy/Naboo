@@ -1,7 +1,11 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { FleteDto } from './dto/flete.dto';
+import { FleteService } from './flete.service';
 
 @Controller('flete')
 export class FleteController {
+  constructor(private readonly fleteService: FleteService) {}
+
   @Get()
   getOrders() {
     const data = [
@@ -57,5 +61,10 @@ export class FleteController {
 
     // Retornar un JSON en la respuesta
     return data;
+  }
+
+  @Post()
+  createFlete(@Body() fleteDto: FleteDto) {
+    return this.fleteService.SolicitarFlete(fleteDto);
   }
 }
