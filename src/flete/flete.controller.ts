@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { FleteDto, ObjConsult } from './dto/flete.dto';
 import { FleteService } from './flete.service';
-import { objConsult } from './felete.dto';
 
 @Controller('flete')
 export class FleteController {
@@ -62,7 +62,11 @@ export class FleteController {
     return data;
   }
   @Post('cotizar')
-  getPrice(@Body() objConsult: objConsult) {
-    return this.fleteService.consultarCosto(objConsult);
+  getPrice(@Body() objConsul: ObjConsult) {
+    return this.fleteService.consultarCosto(objConsul);
+  }
+  @Post()
+  createFlete(@Body() fleteDto: FleteDto) {
+    return this.fleteService.solicitarFlete(fleteDto);
   }
 }

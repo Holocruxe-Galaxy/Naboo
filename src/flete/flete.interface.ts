@@ -1,14 +1,18 @@
 export interface FleteSolicitude extends FleteConsulta {
   dir_origen: string;
   dir_destino: string;
+
   des_carga: string;
+
   rec_nom: string;
+
   rec_tel: number;
   reg_origen: number;
   programado?: string;
   extra?: string;
   cupon?: string;
 }
+
 /* export interface FleteResponse {
   orden_woo: '#85';
   numero_seg: 85;

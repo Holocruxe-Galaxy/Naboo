@@ -14,6 +14,7 @@ import {
 } from './flete.interface';
 import { Flete } from './schema/flete.schema';
 import { Model } from 'mongoose';
+import { FleteDto } from './dto/flete.dto';
 
 @Injectable()
 export class FleteService {
@@ -29,7 +30,7 @@ export class FleteService {
       const newFlete = (
         await this.httpService.axiosRef.post(
           `${this.configService.get<string>('FEX_URL')}/flete/solicitar`,
-          flete,
+          flete as FleteSolicitude,
         )
       ).data;
       await this.fleteModel.create(flete);
@@ -58,7 +59,6 @@ export class FleteService {
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }
-  }
 
   // ? private adivinaAdivinadorQueCamionUsoHoy(transporte: Transporte) {
   // La logica que quiero aplicar acá: En base a la cantida de productos enviados por la empresa, y el "volumen" de las cosas que tiene preconfiguradas el
