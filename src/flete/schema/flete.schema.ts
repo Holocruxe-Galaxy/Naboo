@@ -1,28 +1,61 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+/*
+Guardar el acces key hasheado para luego hacerlo con filtros y poder identificar quien es el proietario o encargado del flete solicitado. Ahí podemos hacer el filtro para cuandop tenemos que hacer consultas o pedidos de algueien más.
+*/
 @Schema()
 export class Flete extends Document {
-  @Prop({ unique: true })
-  access_key: string;
+  @Prop()
+  acceso: string;
 
   @Prop()
-  country: string;
+  ori_lat: number;
 
   @Prop()
-  flete_name: string;
+  ori_lng: number;
 
   @Prop()
-  url: string;
+  dir_origen: string;
 
   @Prop()
-  latitude: number;
+  des_lat: number;
 
   @Prop()
-  longitude: number;
+  des_lng: number;
 
   @Prop()
-  address: string;
+  dir_destino: string;
+
+  @Prop()
+  des_carga: string;
+
+  @Prop()
+  rec_nom: string;
+
+  @Prop()
+  rec_tel: number;
+
+  @Prop()
+  vehiculo: number;
+
+  @Prop()
+  reg_origen: number;
+
+  @Prop()
+  estatus: number;
+
+  @Prop()
+  servicio: number;
+
+  @Prop()
+  tipo: string;
+
+  @Prop()
+  distancia: number;
+
+  @Prop()
+  total: string;
 }
 
 export const FleteSchema = SchemaFactory.createForClass(Flete);

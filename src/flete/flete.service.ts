@@ -12,13 +12,15 @@ import {
   FleteConsultaRespuesta,
   FleteSolicitude,
 } from './flete.interface';
-import { Flete } from './schema/flete.schema';
+import { Flete } from './schema';
 import { Model } from 'mongoose';
 import { FleteDto } from './dto/flete.dto';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class FleteService {
   constructor(
+    @InjectModel(Flete.name)
     @Inject(forwardRef(() => ConfigService))
     private readonly fleteModel: Model<Flete>,
     private configService: ConfigService,
@@ -33,9 +35,18 @@ export class FleteService {
           flete as FleteSolicitude,
         )
       ).data;
-      await this.fleteModel.create(flete);
+      const finalFlete = {
+        ...flete,
+        estatus: newFlete.estatus,
+        servicio: newFlete.resultado.servicio,
+        tipo: newFlete.resultado.tipo,
+        distancia: newFlete.resultado.distancia,
+        total: newFlete.resultado.total,
+      };
+      await this.fleteModel.create(finalFlete);
       return newFlete;
     } catch (error) {
+      console.log(error);
       throw new HttpException(error.message, error.response.status);
     }
   }
