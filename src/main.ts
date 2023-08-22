@@ -38,6 +38,7 @@ async function bootstrap() {
       forbidUnknownValues: false,
     }),
   );
+
   app.enableCors({
     origin: '*', // Reemplaza esto con el origen de tu cliente
   });

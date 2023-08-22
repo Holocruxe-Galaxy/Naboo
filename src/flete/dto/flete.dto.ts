@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, IsOptional } from 'class-validator';
 
 export class FleteDto {
   @IsString()
@@ -37,9 +37,14 @@ export class FleteDto {
   @IsString()
   reg_origen: number;
 
-  //   @IsNumber()
-  //   extra?: string;
+  @IsOptional()
+  programado: string;
 
+  @IsOptional()
+  extra: string;
+
+  @IsOptional()
+  cupon: string;
   //   @IsString()
   //   cupon: '';
 }
