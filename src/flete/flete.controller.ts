@@ -67,6 +67,7 @@ export class FleteController {
   }
   @Post()
   createFlete(@Body() fleteDto: FleteDto) {
+    console.log(fleteDto);
     return this.fleteService.solicitarFlete(fleteDto);
   }
 }

@@ -35,6 +35,7 @@ export class FleteService {
           flete as FleteSolicitude,
         )
       ).data;
+      console.log(newFlete);
       const finalFlete = {
         ...flete,
         estatus: newFlete.estatus,
