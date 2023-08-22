@@ -1,4 +1,4 @@
-import { IsNumber, IsString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsOptional } from 'class-validator';
 
 export class FleteDto {
   @IsString()
@@ -47,4 +47,41 @@ export class FleteDto {
   cupon: string;
   //   @IsString()
   //   cupon: '';
+}
+export class ObjConsult {
+  @IsNotEmpty()
+  @IsString()
+  acceso: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  ori_lat: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  ori_lng: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  des_lat: number;
+
+  @IsNotEmpty()
+  @IsString()
+  rec_nom: string;
+
+  @IsNotEmpty()
+  @IsString()
+  rec_tel: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  des_lng: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  vehiculo: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  reg_origen: number;
 }

@@ -1,11 +1,10 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
-import { FleteDto } from './dto/flete.dto';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { FleteDto, ObjConsult } from './dto/flete.dto';
 import { FleteService } from './flete.service';
 
 @Controller('flete')
 export class FleteController {
   constructor(private readonly fleteService: FleteService) {}
-
   @Get()
   getOrders() {
     const data = [
@@ -62,10 +61,13 @@ export class FleteController {
     // Retornar un JSON en la respuesta
     return data;
   }
-
+  @Post('cotizar')
+  getPrice(@Body() objConsul: ObjConsult) {
+    return this.fleteService.consultarCosto(objConsul);
+  }
   @Post()
   createFlete(@Body() fleteDto: FleteDto) {
-console.log(fleteDto)
-    return this.fleteService.SolicitarFlete(fleteDto);
+    console.log(fleteDto);
+    return this.fleteService.solicitarFlete(fleteDto);
   }
 }

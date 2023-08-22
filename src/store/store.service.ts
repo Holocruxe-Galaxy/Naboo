@@ -37,7 +37,7 @@ export class StoreService {
     return await this.storeModel.findById(id);
   }
   async updateStore(store: objStore) {
-    let storeDb = await this.storeModel.findOne({
+    const storeDb = await this.storeModel.findOne({
       access_key: store.access_key,
     });
     if (storeDb) {
