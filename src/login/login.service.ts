@@ -31,7 +31,6 @@ export class LoginService {
   async Login(store: objLogin): Promise<boolean> {
     try {
       const verify = (
-
         await this.httpService.axiosRef.post<accessVerifyResponse>(
           `${this.configService.get<string>('FEX_URL')}/index`,
           { acceso: store.access_key },
