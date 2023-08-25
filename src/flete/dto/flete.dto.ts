@@ -5,6 +5,9 @@ export class FleteDto {
   acceso: string;
 
   @IsString()
+  wc_order: string;
+
+  @IsString()
   ori_lat: number;
 
   @IsString()

@@ -13,6 +13,9 @@ export class Flete extends Document {
   servicio: number;
 
   @Prop()
+  wc_order: string;
+
+  @Prop()
   dir_origen: string;
 
   @Prop()

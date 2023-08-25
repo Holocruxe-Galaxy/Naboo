@@ -33,6 +33,7 @@ export class FleteService {
       ).data;
       const finalFlete = {
         acceso: flete.acceso,
+        wc_order: flete.wc_order,
         dir_origen: flete.dir_origen,
         dir_destino: flete.dir_destino,
         des_lat: flete.des_lat,
