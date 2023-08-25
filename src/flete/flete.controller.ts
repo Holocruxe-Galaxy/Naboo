@@ -5,10 +5,15 @@ import { FleteService } from './flete.service';
 @Controller('flete')
 export class FleteController {
   constructor(private readonly fleteService: FleteService) {}
-  @Get(':access_key')
+  /*  @Get(':access_key')
   obtenerServiciosPorEmpresa(@Param('access_key') access_key: string) {
     return this.fleteService.obtenerFletesDeEmpresaPorAccKey(access_key);
+  } */
+  @Get(':access_key')
+  testObtencionYActualización(@Param('access_key') access_key: string) {
+    return this.fleteService.obtenerFletesDeEmpresaPorAccKeyTest(access_key);
   }
+
   @Post()
   createFlete(@Body() fleteDto: FleteDto) {
     console.log(fleteDto);
