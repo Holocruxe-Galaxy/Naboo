@@ -44,3 +44,24 @@ export interface Tranporte {
   categoría: string;
   cantidad: number;
 }
+
+export interface FexFlete {
+  servicio: number;
+  tipo: string;
+  tiempo: number;
+  estado: number;
+  descripcion: string;
+  conductor: Conductor;
+}
+
+interface Conductor {
+  nombre: string;
+  telefono: string;
+  patente: string;
+  tipo: string;
+  posicion: Posicion;
+}
+interface Posicion {
+  lat: number;
+  lng: number;
+}

@@ -10,19 +10,10 @@ export class Flete extends Document {
   acceso: string;
 
   @Prop()
-  ori_lat: number;
-
-  @Prop()
-  ori_lng: number;
+  servicio: number;
 
   @Prop()
   dir_origen: string;
-
-  @Prop()
-  des_lat: number;
-
-  @Prop()
-  des_lng: number;
 
   @Prop()
   dir_destino: string;
@@ -43,10 +34,10 @@ export class Flete extends Document {
   reg_origen: number;
 
   @Prop()
-  estatus: number;
+  des_lat: number;
 
   @Prop()
-  servicio: number;
+  des_lng: number;
 
   @Prop()
   tipo: string;
@@ -56,6 +47,12 @@ export class Flete extends Document {
 
   @Prop()
   total: string;
+
+  @Prop()
+  estado: number;
+
+  @Prop()
+  descripcion: string;
 }
 
 export const FleteSchema = SchemaFactory.createForClass(Flete);
