@@ -122,7 +122,10 @@ export class FleteService {
     }
   }
 
-  async getFletesByAccKey(access_key: string): Promise<Flete[]> {
+  async getFletesByAccKey(
+    access_key: string,
+    filtro?: number,
+  ): Promise<Flete[]> {
     const fletesServicios = await this.fleteModel
       .find({ acceso: access_key })
       .select('-_id servicio')
@@ -130,10 +133,44 @@ export class FleteService {
 
     await this.actualizarFletes(fletesServicios, access_key);
 
-    const fletes = await this.fleteModel
-      .find({ acceso: access_key })
-      .select('-__v -acceso')
-      .exec();
+    let fletes: any;
+
+    switch (filtro) {
+      case 1:
+        fletes = await this.fleteModel
+          .find({ acceso: access_key, estado: [0, 14, 5, 2] })
+          .select('-__v -acceso')
+          .exec();
+        break;
+
+      case 2:
+        fletes = await this.fleteModel
+          .find({ acceso: access_key, estado: [9, 10] })
+          .select('-__v -acceso')
+          .exec();
+        break;
+
+      case 3:
+        fletes = await this.fleteModel
+          .find({ acceso: access_key, estado: [3, 6, 16] })
+          .select('-__v -acceso')
+          .exec();
+        break;
+
+      case 4:
+        fletes = await this.fleteModel
+          .find({ acceso: access_key, estado: [8] })
+          .select('-__v -acceso')
+          .exec();
+        break;
+
+      default:
+        fletes = await this.fleteModel
+          .find({ acceso: access_key })
+          .select('-__v -acceso')
+          .exec();
+        break;
+    }
     return fletes;
   }
 }
