@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Flete, FleteSchema } from './schema';
+import { FleteGateway } from './flete.gateway';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { Flete, FleteSchema } from './schema';
     HttpModule,
   ],
   controllers: [FleteController],
-  exports: [FleteService],
-  providers: [FleteService],
+  exports: [FleteService, FleteGateway],
+  providers: [FleteService, FleteGateway],
 })
 export class FleteModule {}
