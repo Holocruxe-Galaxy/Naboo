@@ -11,7 +11,7 @@ export class FleteController {
   } */
   @Get(':access_key')
   testObtencionYActualización(@Param('access_key') access_key: string) {
-    return this.fleteService.obtenerFletesDeEmpresaPorAccKeyTest(access_key);
+    return this.fleteService.getFletesByAccKey(access_key);
   }
 
   @Post()

@@ -51,6 +51,12 @@ export class Flete extends Document {
   @Prop()
   total: string;
 
+  @Prop({ default: Date.now })
+  createdAt: Date;
+
+  @Prop()
+  programado: string;
+
   @Prop()
   estado: number;
 

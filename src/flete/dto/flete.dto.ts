@@ -46,6 +46,9 @@ export class FleteDto {
   @IsOptional()
   extra: string;
 
+  @IsString()
+  fecha: string;
+
   @IsOptional()
   cupon: string;
   //   @IsString()

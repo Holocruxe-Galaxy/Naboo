@@ -43,6 +43,7 @@ export class FleteService {
         rec_tel: flete.rec_tel,
         vehiculo: flete.vehiculo,
         reg_origen: flete.reg_origen,
+        programado: flete.programado ? flete.programado : flete.fecha,
         servicio: newFlete.resultado.servicio,
         tipo: newFlete.resultado.tipo,
         distancia: newFlete.resultado.distancia,
@@ -120,9 +121,7 @@ export class FleteService {
     }
   }
 
-  async obtenerFletesDeEmpresaPorAccKeyTest(
-    access_key: string,
-  ): Promise<Flete[]> {
+  async getFletesByAccKey(access_key: string): Promise<Flete[]> {
     const fletesServicios = await this.fleteModel
       .find({ acceso: access_key })
       .select('-_id servicio')
@@ -132,7 +131,7 @@ export class FleteService {
 
     const fletes = await this.fleteModel
       .find({ acceso: access_key })
-      .select('-_id -__v -acceso')
+      .select('-__v -acceso')
       .exec();
     return fletes;
   }
