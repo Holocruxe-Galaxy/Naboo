@@ -43,6 +43,7 @@ export class FleteService {
         rec_tel: flete.rec_tel,
         vehiculo: flete.vehiculo,
         reg_origen: flete.reg_origen,
+        fecha: flete.fecha,
         programado: flete.programado ? flete.programado : flete.fecha,
         servicio: newFlete.resultado.servicio,
         tipo: newFlete.resultado.tipo,

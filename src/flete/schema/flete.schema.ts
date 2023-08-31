@@ -61,6 +61,9 @@ export class Flete extends Document {
   estado: number;
 
   @Prop()
+  fecha: string;
+
+  @Prop()
   descripcion: string;
 }
 
