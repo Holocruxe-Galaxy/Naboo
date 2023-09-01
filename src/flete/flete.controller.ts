@@ -12,7 +12,7 @@ export class FleteController {
   @Get(':access_key')
   testObtencionYActualización(
     @Param('access_key') access_key: string,
-    @Query('filtro') filtro: number,
+    @Query('filtro') filtro: string,
   ) {
     console.log(filtro);
     return this.fleteService.getFletesByAccKey(access_key, filtro);
