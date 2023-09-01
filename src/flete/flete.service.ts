@@ -141,12 +141,12 @@ export class FleteService {
         console.log('case 4');
         break;
 
-      /*       default:
+      default:
         fletes = await this.fleteModel
           .find({ acceso: access_key })
           .select('-__v -acceso')
           .exec();
-        break; */
+        break;
     }
     return fletes;
   }
