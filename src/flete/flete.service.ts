@@ -66,33 +66,6 @@ export class FleteService {
     }
   }
 
-  /*  async obtenerFletesDeEmpresaPorAccKey(
-    access_key: string,
-  ): Promise<FexFlete[]> {
-    const fletes = await this.fleteModel
-      .find({ acceso: access_key })
-      .select('-_id servicio')
-      .exec();
-
-    const updatedFletes = fletes.map(
-      async (flete: Partial<Flete>): Promise<FexFlete> => {
-        const getFlete = (
-          await this.httpService.axiosRef.get(
-            `${this.configService.get<string>(
-              'FEX_URL',
-            )}/flete/estado?acceso=${access_key}&servicio=${flete.servicio}`,
-          )
-        ).data;
-        return getFlete;
-      },
-    );
-
-    const promiseFletes = await Promise.all(updatedFletes);
-
-    console.log(promiseFletes);
-    return promiseFletes;
-  }
- */
   private async actualizarFletes(
     servicios: Partial<Flete[]>,
     access_key: string,
