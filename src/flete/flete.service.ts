@@ -97,7 +97,7 @@ export class FleteService {
 
   async getFletesByAccKey(
     access_key: string,
-    filtro?: number,
+    filtro?: string,
   ): Promise<Flete[]> {
     const fletesServicios = await this.fleteModel
       .find({ acceso: access_key })
@@ -109,32 +109,36 @@ export class FleteService {
     let fletes: any;
 
     switch (filtro) {
-      case 1:
+      case '1':
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [0, 14, 5, 2] })
           .select('-__v -acceso')
           .exec();
+        console.log('case 1');
         break;
 
-      case 2:
+      case '2':
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [9, 10] })
           .select('-__v -acceso')
           .exec();
+        console.log('case 2');
         break;
 
-      case 3:
+      case '3':
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [3, 6, 16] })
           .select('-__v -acceso')
           .exec();
+        console.log('case 3');
         break;
 
-      case 4:
+      case '4':
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [8] })
           .select('-__v -acceso')
           .exec();
+        console.log('case 4');
         break;
 
       default:
