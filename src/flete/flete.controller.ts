@@ -14,6 +14,7 @@ export class FleteController {
     @Param('access_key') access_key: string,
     @Query('filtro') filtro: number,
   ) {
+    console.log(filtro);
     return this.fleteService.getFletesByAccKey(access_key, filtro);
   }
 
