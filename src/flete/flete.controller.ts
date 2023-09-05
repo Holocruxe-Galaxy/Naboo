@@ -1,61 +1,26 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { FleteDto } from './dto/flete.dto';
+import { FleteService } from './flete.service';
 
 @Controller('flete')
 export class FleteController {
-  @Get()
-  getOrders() {
-    const data = [
-      {
-        orden_woo: '#85',
-        numero_seg: '85',
-        status_fex: '9',
-        modo: 'express',
-        fecha: '12/02/21',
-        pago: 'completado',
-      },
-      {
-        orden_woo: '#87',
-        numero_seg: '87',
-        status_fex: '16',
-        modo: 'programado',
-        fecha: '12/02/21',
-        pago: 'completado',
-      },
-      {
-        orden_woo: '#99',
-        numero_seg: '99',
-        status_fex: ' 14',
-        modo: 'express',
-        fecha: '12/02/21',
-        pago: 'pendiente',
-      },
-      {
-        orden_woo: '#85',
-        numero_seg: '85',
-        status_fex: ' 9',
-        modo: 'express',
-        fecha: '12/02/21',
-        pago: 'completado',
-      },
-      {
-        orden_woo: '#87',
-        numero_seg: '87',
-        status_fex: '2',
-        modo: 'programado',
-        fecha: '12/02/21',
-        pago: 'completado',
-      },
-      {
-        orden_woo: '#99',
-        numero_seg: '99',
-        status_fex: '0',
-        modo: 'express',
-        fecha: '12/02/21',
-        pago: 'pendiente',
-      },
-    ];
+  constructor(private readonly fleteService: FleteService) {}
+  /*  @Get(':access_key')
+  obtenerServiciosPorEmpresa(@Param('access_key') access_key: string) {
+    return this.fleteService.obtenerFletesDeEmpresaPorAccKey(access_key);
+  } */
+  @Get(':access_key')
+  testObtencionYActualización(
+    @Param('access_key') access_key: string,
+    @Query('filtro') filtro: string,
+  ) {
+    console.log(filtro);
+    return this.fleteService.getFletesByAccKey(access_key, filtro);
+  }
 
-    // Retornar un JSON en la respuesta
-    return data;
+  @Post()
+  createFlete(@Body() fleteDto: FleteDto) {
+    console.log(fleteDto);
+    return this.fleteService.solicitarFlete(fleteDto);
   }
 }

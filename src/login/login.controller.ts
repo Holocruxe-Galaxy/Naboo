@@ -1,21 +1,12 @@
-import {
-  Controller,
-  Post,
-  Body,
-  HttpException,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
-import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
-import { objLogin } from 'src/dto/user.dto';
+import { Controller, Post, Body } from '@nestjs/common';
+import { objLogin } from 'src/store/dto/store.dto';
+import { LoginService } from './login.service';
 @Controller('login')
 export class LoginController {
+  constructor(private readonly loginService: LoginService) {}
+
   @Post()
   login(@Body() user: objLogin) {
-    if (user.accessKey === 'alex' && user.country === 'Argentina') {
-      return true;
-    } else {
-      throw new HttpException('unauthorized', HttpStatus.UNAUTHORIZED);
-    }
+    return this.loginService.Login(user);
   }
 }
