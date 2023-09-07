@@ -1,0 +1,43 @@
+<head>
+  <link rel="stylesheet" href="/css/docs.css">
+</head>
+{{>navbar navbarOptions}}
+<div class="docs_main_container">
+  {{>sidebar navbarOptions}}
+  <div class="docs_mainbody">
+    <h1>Flujo del cliente</h1>
+    <p>
+      Cuando hayas finalizado correctamente la configuración e instalación del plugin en tu tienda, inmediatamente tus
+      clientes tendrán disponible <b>Fex Programado</b> y <b>Fex Express</b> como medio de envío en el checkout.
+    </p>
+    <p>El cliente deberá elegir una de estas dos opciones para configurar su envío a travez de Fex</p>
+    <p class="fex_alert"> El cliente debe tener activada su localización para poder realizar la solicitud y calcular el
+      costo del flete</p>
+    <h3>Fex Programado</h3>
+    <p class="add_sangría">Fex programado, es una forma de envío donde el cliente deberá fijar un horario en el que el
+      producto le será
+      enviado. Este horario no superará la hora definida tanto por Fex como por la tienda. </p>
+    <img class="fex_images" src="/assets/fex_10.png" alt="cliente_envio_1">
+    <p class="add_sangría">A su vez, el cliente tendrá la obligación de elegir un tipo de vehiculo para el envío,
+      teniendo disponible 6
+      opciones.</p>
+    <p class="add_sangría">Una vez definido el tipo de vehiculo, aparecerá la cotización del envío, y al definir la
+      fecha y el horario,
+      estará disponible el boton de confirmación de meteodo de envío</p>
+    <h3>Fex Express</h3>
+    <p class="add_sangría">Fex Express es una modalidad que tiene fex en el que se hace el envío a partir de 30 minutos
+      de hecho el pedido.
+    </p>
+    <img class="fex_images" src="/assets/fex_9.png" alt="cliente_envio_2">
+    <p class="add_sangría">En este modo, el cliente solo deberá elegir el vehiculo que se utilizará para el pedido.</p>
+    <p class="fex_alert add_sangría">Tener en cuenta que, si el horario en que es solicitado el fex express, está fuera
+      de los
+      limites de Fex, éste será reprogramado para el día síguiente</p>
+    <p class="add_sangría">Ya elegido el vehículo y poder observar la cotización, el boton de confirmación estará
+      disponible</p>
+    <h3>Finalización de la compra</h3>
+    <p>Una vez elegido el metodo de envío, este se sumará al costo final de la compra en el carrito. <br>
+      Cuando se finaliza la compra utilizando <b>Fex</b> com medio de envío, podrás ver la orden desde tu panel de
+      control</p>
+  </div>
+</div>
