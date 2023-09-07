@@ -1,11 +1,14 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 // import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
+import * as handlebars from 'express-handlebars';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   /*  const configService = app.get(ConfigService);
 
@@ -38,6 +41,11 @@ async function bootstrap() {
       forbidUnknownValues: false,
     }),
   );
+
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setViewEngine('hbs');
+  app.engine('hbs', handlebars.engine({ extname: 'hbs' }));
 
   app.enableCors({
     origin: '*', // Reemplaza esto con el origen de tu cliente
