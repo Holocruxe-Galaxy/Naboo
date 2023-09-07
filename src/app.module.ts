@@ -8,9 +8,16 @@ import { LoginController } from './login/login.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
-import { LoginService } from './login/login.service';
 import { LoginModule } from './login/login.module';
 import { StoreModule } from './store/store.module';
+import { RouteGuard } from './login/auth.guard';
+import { APP_GUARD } from '@nestjs/core';
+import { FexController } from './fex/fex.controller';
+import { DocsController } from './docs/docs.controller';
+import { DocsService } from './docs/docs.service';
+import { FexService } from './fex/fex.service';
+import { FexModule } from './fex/fex.module';
+import { DocsModule } from './docs/docs.module';
 
 @Module({
   imports: [
@@ -30,9 +37,16 @@ import { StoreModule } from './store/store.module';
     FleteModule,
     LoginModule,
     StoreModule,
+    FexModule,
+    DocsModule,
   ],
-  controllers: [AppController, LoginController],
-  providers: [AppService, LoginService],
+  controllers: [AppController, LoginController, FexController, DocsController],
+  providers: [
+    AppService,
+    { provide: APP_GUARD, useClass: RouteGuard },
+    DocsService,
+    FexService,
+  ],
 })
 export class AppModule {} /* implements NestModule{
   configure(consumer: MiddlewareConsumer) {
