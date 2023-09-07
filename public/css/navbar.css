@@ -1,0 +1,22 @@
+.navbar_navtag {
+  background-color: #FF6C0E;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar_options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.navbar_options li {
+  list-style: none;
+}
+
+.navbar_options a {
+  color: #FFF;
+  text-decoration: none;
+}
