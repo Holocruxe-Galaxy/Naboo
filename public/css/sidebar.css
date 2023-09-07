@@ -1,0 +1,27 @@
+.sidebar_navtag {
+  margin-top: 10px;
+  color: black
+}
+
+.sidebar_options {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.sidebar_options li {
+  list-style: none;
+}
+
+.sidebar_options h4 {
+margin: 10px 0;
+}
+
+.sidebar_options a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.subsidebar_options {
+  margin: 0 5px;
+}

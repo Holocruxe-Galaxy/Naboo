@@ -1,21 +1,28 @@
 import { HttpService } from '@nestjs/axios';
 import {
   HttpException,
+  HttpStatus,
   Inject,
   Injectable,
   UnauthorizedException,
   forwardRef,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { objLogin, objStore } from 'src/store/dto/store.dto';
-import { /* TokenPayload,*/ accessVerifyResponse } from './login.interface';
+import { objHBLogin, objLogin, objStore } from 'src/store/dto/store.dto';
+import { TokenPayload, accessVerifyResponse } from './login.interface';
 import { JwtService } from '@nestjs/jwt';
 import { StoreService } from 'src/store/store.service';
+import { InjectModel } from '@nestjs/mongoose';
+import { Login } from './schema';
+import { Model } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class LoginService {
   constructor(
+    @InjectModel(Login.name)
     @Inject(forwardRef(() => ConfigService))
+    private readonly loginModel: Model<Login>,
     private configService: ConfigService,
     private readonly httpService: HttpService,
     private jwtService: JwtService,
@@ -55,16 +62,67 @@ export class LoginService {
     }
   }
 
-  // ? private async crearToken(store: TokenPayload): Promise<string> {
-  //   if (!this.configService.get<string>('JWT_SECRET')) {
-  //     throw new HttpException(
-  //       'No fue posible crear el token',
-  //       HttpStatus.INTERNAL_SERVER_ERROR,
-  //     );
-  //   }
-  //   return await this.jwtService.signAsync({
-  //     storeAccess: store.storeAccess,
-  //     country: store.country,
-  //   } as TokenPayload);
-  // }
+  async HBRegister(user: objHBLogin): Promise<Login> {
+    try {
+      const dbUser = await this.loginModel
+        .findOne({ username: user.username })
+        .exec();
+      if (dbUser) {
+        throw new HttpException('user already exists', HttpStatus.BAD_REQUEST);
+      }
+      const pass = await bcrypt.hash(
+        user.password,
+        Number(this.configService.get<string>('BCRYPT_ROUNDS')),
+      );
+      user.password = pass;
+      const newUser = await this.loginModel.create(user);
+      return newUser;
+    } catch (error) {
+      throw new HttpException(error.mensaje, error.status);
+    }
+  }
+
+  async HBLogin(user: objHBLogin): Promise<any> {
+    try {
+      const dbUser = await this.loginModel
+        .findOne({ username: user.username })
+        .exec();
+      if (!dbUser) {
+        throw new HttpException(
+          'Nombre de usuario o contraseña incorrectos',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      if (!dbUser && (await bcrypt.compare(user.password, dbUser.password))) {
+        throw new HttpException(
+          'Nombre de usuario o contraseña incorrectos',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      const token = await this.crearToken({
+        userId: dbUser._id,
+        username: dbUser.username,
+      });
+
+      return { token, userId: dbUser._id };
+    } catch (error) {
+      throw new HttpException(error.message, error.status);
+    }
+  }
+
+  private async crearToken(user: TokenPayload): Promise<string> {
+    if (!this.configService.get<string>('JWT_SECRET')) {
+      throw new HttpException(
+        'No fue posible crear el token',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+    return await this.jwtService.signAsync(
+      {
+        userId: user.userId,
+        username: user.username,
+      } as TokenPayload,
+      { secret: this.configService.get<string>('JWT_SECRET') },
+    );
+  }
 }

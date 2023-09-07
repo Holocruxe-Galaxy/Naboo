@@ -33,8 +33,12 @@ export class StoreService {
     return await this.storeModel.create(store);
   }
 
-  async findOne(id: string): Promise<Store> {
-    return await this.storeModel.findById(id);
+  async getStoreById(id: string): Promise<Store> {
+    return await this.storeModel.findById(id).exec();
+  }
+
+  async getStoreByAccessKey(access_key: string): Promise<Store> {
+    return await this.storeModel.findOne({ access_key: access_key }).exec();
   }
   async updateStore(store: objStore) {
     const storeDb = await this.storeModel.findOne({
@@ -55,5 +59,9 @@ export class StoreService {
     } else {
       throw new HttpException('store not found', HttpStatus.BAD_REQUEST);
     }
+  }
+
+  async getStores(): Promise<Store[]> {
+    return await this.storeModel.find();
   }
 }

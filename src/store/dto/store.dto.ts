@@ -43,3 +43,12 @@ export class objStore {
   @IsNumber()
   store_lng: number;
 }
+
+export class objHBLogin {
+  @IsNotEmpty()
+  @IsString()
+  username: string;
+
+  @IsString()
+  password: string;
+}
