@@ -1,0 +1,38 @@
+{{>navbar navbarOptions}}
+<div>
+  <table class="store_data_table">
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Origen</th>
+        <th>Destino</th>
+        <th>Descripcion</th>
+        <th>Nombre del receptor</th>
+        <th>Número del receptor</th>
+        <th>Vehiculo</th>
+        <th>Tipo de Envio</th>
+        <th>Distancia</th>
+        <th>Total</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody id="fex_sotre_services">
+      {{#each store_services}}
+      <tr>
+        <td>{{this.servicio}}</td>
+        <td title="{{this.dir_origen}}">{{this.dir_origen}}</td>
+        <td title="{{this.dir_destino}}">{{this.dir_destino}}</td>
+        <td title="{{this.des_carga}}">{{this.des_carga}}</td>
+        <td>{{this.rec_nom}}</td>
+        <td>{{this.rec_tel}}</td>
+        <td>{{this.vehiculo}}</td>
+        <td>{{this.tipo}}</td>
+        <td>{{this.distancia}}</td>
+        <td>{{this.total}}</td>
+        <td>{{this.estado}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{!-- <script src="/js/store_details.js"></script> --}}
