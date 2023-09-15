@@ -5,8 +5,7 @@
   gap: 0px 20px;
   grid-template-areas:
     "sidebar mainbody";
-  height: 80vh;
-  max-height: 80vh;
+  max-height: 100vh;
 }
 
 .fex_alert{
