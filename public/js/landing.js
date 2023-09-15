@@ -1,4 +1,4 @@
-const fex_button = document.getElementById('fex');
+/* const fex_button = document.getElementById('fex');
 const documentation_button = document.getElementById('documentation');
 
 async function postData(url = '', data = {}) {
@@ -72,3 +72,4 @@ fex_button.addEventListener('click', async () => {
 documentation_button.addEventListener('click', () => {
   window.location.assign(`${document.URL}docs`);
 });
+ */

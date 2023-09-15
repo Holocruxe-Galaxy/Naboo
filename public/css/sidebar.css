@@ -25,3 +25,10 @@ margin: 10px 0;
 .subsidebar_options {
   margin: 0 5px;
 }
+
+.sidebar_logo_image {
+  height: max-content;
+  padding-top: 8px;
+  background-color: rgba(204, 102, 51, 1);
+  border-radius: 20px;
+}

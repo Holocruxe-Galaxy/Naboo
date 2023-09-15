@@ -1,0 +1,26 @@
+<head>
+  <link rel="stylesheet" href="/css/buttons.css">
+</head>
+<div class="prev_next_btn_container">
+  <a id="fex_prev_btn" href={{prev.link}}>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path>
+    </svg>
+    <div>
+      <span class="titleBtn">PREV </span>
+      <span class="prevBtn">{{prev.title}}</span>
+    </div>
+  </a>
+  <a id="fex_next_btn" href={{next.link}}>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
+    </svg>
+    <div>
+      <span class="titleBtn">NEXT</span>
+      <span class="nextBtn">{{next.title}}</span>
+    </div>
+  </a>
+</div>
+<script src="/js/next_prev.js"></script>

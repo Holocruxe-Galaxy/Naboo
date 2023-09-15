@@ -66,6 +66,10 @@ export class DocsController {
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
       },
+      buttons: {
+        prev: { title: 'Resumen', link: '/docs' },
+        next: { title: 'Configuración de la tienda', link: '/docs/config' },
+      },
     };
   }
 
@@ -78,6 +82,10 @@ export class DocsController {
         navbarFex: false,
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
+      },
+      buttons: {
+        prev: { title: 'Instalación y Onboarding', link: '/docs/onboard' },
+        next: { title: 'Configuración de la tienda', link: '/docs/config' },
       },
     };
   }
@@ -92,6 +100,10 @@ export class DocsController {
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
       },
+      buttons: {
+        prev: { title: 'Instalaciónn y Onboarding', link: '/docs/onboard' },
+        next: { title: 'Flujo del cliente', link: '/docs/flujo_cliente' },
+      },
     };
   }
 
@@ -104,6 +116,10 @@ export class DocsController {
         navbarFex: false,
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
+      },
+      buttons: {
+        prev: { title: 'Configuración de la tienda', link: '/docs/config' },
+        next: { title: 'Acceso a paneles', link: '/docs/paneles' },
       },
     };
   }
@@ -118,6 +134,13 @@ export class DocsController {
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
       },
+      buttons: {
+        prev: { title: 'Flujo del Cliente', link: '/docs/flujo_cliente' },
+        next: {
+          title: 'Preguntas frecuentes',
+          link: '/docs/preguntas_frecuentes',
+        },
+      },
     };
   }
 
@@ -130,6 +153,10 @@ export class DocsController {
         navbarFex: false,
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
+      },
+      buttons: {
+        next: '',
+        prev: '',
       },
     };
   }
@@ -144,6 +171,10 @@ export class DocsController {
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
       },
+      buttons: {
+        next: '',
+        prev: '',
+      },
     };
   }
 
@@ -156,6 +187,10 @@ export class DocsController {
         navbarFex: false,
         navbarMenu: this.docs.nav,
         sidebarMenu: this.docs.side,
+      },
+      buttons: {
+        prev: { title: 'Acceso a paneles', link: '/docs/paneles' },
+        next: { title: 'Fex', link: 'https://fex.cl' },
       },
     };
   }

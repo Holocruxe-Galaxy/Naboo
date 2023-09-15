@@ -1,5 +1,4 @@
 .navbar_navtag {
-  background-color: #FF6C0E;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,4 +18,10 @@
 .navbar_options a {
   color: #FFF;
   text-decoration: none;
+}
+
+.navbar_handlebars {
+  padding-top: 8px;
+  background-color: rgba(204, 102, 51, 1);
+  border-radius: 20px;
 }
