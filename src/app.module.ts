@@ -18,6 +18,9 @@ import { DocsService } from './docs/docs.service';
 import { FexService } from './fex/fex.service';
 import { FexModule } from './fex/fex.module';
 import { DocsModule } from './docs/docs.module';
+import { GeolocalizationController } from './geolocalization/geolocalization.controller';
+import { GeolocalizationService } from './geolocalization/geolocalization.service';
+import { GeolocalizationModule } from './geolocalization/geolocalization.module';
 
 @Module({
   imports: [
@@ -39,13 +42,15 @@ import { DocsModule } from './docs/docs.module';
     StoreModule,
     FexModule,
     DocsModule,
+    GeolocalizationModule,
   ],
-  controllers: [AppController, LoginController, FexController, DocsController],
+  controllers: [AppController, LoginController, FexController, DocsController, GeolocalizationController],
   providers: [
     AppService,
     { provide: APP_GUARD, useClass: RouteGuard },
     DocsService,
     FexService,
+    GeolocalizationService,
   ],
 })
 export class AppModule {} /* implements NestModule{
