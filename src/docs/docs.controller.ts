@@ -28,7 +28,7 @@ export class DocsController {
       {
         title: 'Gestión de órdenes',
         sub: [
-          { title: 'Acceso a paneles', link: '/docs/paneles' },
+          { title: 'Acceso al panel', link: '/docs/paneles' },
           /* { title: 'Flujo usuario prepago', link: '/docs/flujo_usuario_pre' }, */
           /* { title: 'Flujo usuario pospago', link: '/docs/flujo_usuario_pos' }, */
         ],
