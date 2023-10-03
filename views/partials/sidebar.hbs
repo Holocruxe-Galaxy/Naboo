@@ -1,0 +1,17 @@
+<head>
+  <link rel="stylesheet" href="/css/sidebar.css">
+</head>
+<nav class="sidebar_navtag">
+  <a href="/docs" class="sidebar_logo_image"> <img class="sidebar_logo_image" src="/assets/Fex.png" alt="Logo de Fex"
+      width="300px"> </a>
+  <div class="sidebar_options">
+    {{#each sidebarMenu }}
+    <h4>{{this.title}}</h4>
+    <ul class="subsidebar_options">
+      {{#each this.sub }}
+      <li><a href={{this.link}}>{{this.title}}</a></li>
+      {{/each}}
+    </ul>
+    {{/each}}
+  </div>
+</nav>

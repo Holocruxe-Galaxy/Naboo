@@ -1,0 +1,119 @@
+.landing_container {
+  height: 90vh;
+  /*   border: red solid 1px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing_title {
+  font-size: 5rem;
+}
+
+.landing_description {
+  text-align: start;
+}
+
+#health_check_img {
+
+  display: inline-block;
+}
+
+.fex_logo_img_land {
+  max-width: 250px;
+  background-color: rgba(204, 102, 51, 1);
+  border-radius: 10px;
+}
+
+.fex_documentation_button {
+  font-size: x-large;
+  font-weight: 700;
+  text-decoration: none;
+  color: #F5F5F5;
+  background-color: rgba(204, 102, 51, 1);
+  padding: 20px;
+  border-radius: 10px;
+  transition-property: background-color;
+  transition-duration: 200ms;
+  -webkit-box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.fex_documentation_button:hover {
+  background-color: rgb(219, 111, 56);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* .landing_container {
+margin-top: 20vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6vw;
+}
+!! Documentation button 
+#documentation {
+  height: 100%;
+  --c: #fff;
+   text color 
+  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,0%)/300% no-repeat,
+  #e9a209;
+   background color 
+  color: #0000;
+  border: none;
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i,1)));
+  text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+  calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+}
+
+
+#documentation:hover,
+#documentation:focus-visible{
+--_p: 50%;
+--_i: 0;
+}
+#documentation:active {
+  text-shadow: none;
+  color: var(--c);
+  box-shadow: inset 0 0 9e9q #0005;
+  transition: 0s;
+}
+!!Fex Button
+
+#fex{
+  height: 100%;
+  --c: #fff;
+  !!text color
+   background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
+     #e9a209;
+  !!background color
+   color: #0000;
+   border: none;
+   transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+   text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+     calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+   outline-offset: .1em;
+   transition: 0.3s;
+}
+
+
+#fex:hover,
+#fex:focus-visible {
+  --_p: 50%;
+  --_i: 0;
+}
+
+
+#fex:active {
+  text-shadow: none;
+  color: var(--c);
+  box-shadow: inset 0 0 9e9q #0005;
+  transition: 0s;
+} */

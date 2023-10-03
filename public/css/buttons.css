@@ -1,0 +1,32 @@
+#fex_next_btn,
+#fex_prev_btn {
+  color: black;
+  font-style: normal;
+  display: flex;
+  max-width: fit-content;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#fex_prev_btn {
+  flex-direction: row;
+}
+
+#fex_next_btn {
+  flex-direction: row-reverse;
+}
+
+.titleBtn{
+  font-weight: 200;
+}
+
+#fex_prev_btn div,
+#fex_next_btn div {
+  display: flex;
+  flex-direction: column;
+}
+
+.prev_next_btn_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

@@ -1,0 +1,48 @@
+.docs_main_container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 20px;
+  grid-template-areas:
+    "sidebar mainbody";
+  max-height: 97vh;
+}
+
+.fex_alert{
+  background-color: rgba(255, 187, 0, 0.527);
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 10px 0;
+  max-width: 55vw;
+}
+
+.sidebar_navtag {
+  grid-area: sidebar;
+  max-height: 80vh;
+}
+
+.docs_mainbody {
+  grid-area: mainbody;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.docs_mainbody a {
+  color: #ff7300;
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#link_SDK {
+  color: orange;
+}
+
+.fex_images {
+  max-width: 55vw;
+}
+
+.add_sangría {
+  padding-left: 15px;
+}

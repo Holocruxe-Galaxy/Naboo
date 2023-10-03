@@ -1,0 +1,25 @@
+{{>navbar navbarOptions}}
+<div class="stores_container">
+  <table class="store_data_table">
+    <thead>
+      <tr>
+        <th>Nombre de la empresa</th>
+        <th>Dirección</th>
+        <th>Código Postal</th>
+        <th>Ciudad</th>
+        <th>Dinero Adeudado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each empresas}}
+      <tr data-id={{this.id}}>
+        <td>{{this.store_name}}</td>
+        <td>{{this.address}}</td>
+        <td>{{this.post_code}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.total}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

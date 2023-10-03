@@ -1,0 +1,27 @@
+.navbar_navtag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar_options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.navbar_options li {
+  list-style: none;
+}
+
+.navbar_options a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.navbar_handlebars {
+  padding-top: 8px;
+  background-color: rgba(204, 102, 51, 1);
+  border-radius: 20px;
+}

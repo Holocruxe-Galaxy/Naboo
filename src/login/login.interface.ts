@@ -7,6 +7,6 @@ export interface accessVerifyResponse {
   mensaje?: string;
 }
 export interface TokenPayload {
-  storeAccess: string;
-  country: string;
+  userId: string;
+  username: string;
 }
