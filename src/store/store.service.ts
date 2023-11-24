@@ -6,12 +6,6 @@ import { JwtService } from '@nestjs/jwt';
 import { HttpService } from '@nestjs/axios';
 import { objStore } from './dto/store.dto';
 
-/*
- A ver. Si lo que yo tengo que hacer es crear la store cuando se registra o se logea
- tengo un problema ahí. 
- Cómo sería la configuración allí?
-  
- */
 @Injectable()
 export class StoreService {
   constructor(
@@ -53,6 +47,7 @@ export class StoreService {
       storeDb.url = store.url;
       storeDb.store_lat = store.store_lat;
       storeDb.store_lng = store.store_lng;
+      storeDb.extra_comision = store.extra_comision;
       // Guarda los cambios en la base de datos
       await storeDb.save();
       return 'store configured correctly';

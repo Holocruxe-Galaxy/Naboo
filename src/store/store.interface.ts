@@ -9,4 +9,5 @@ export interface StoreInterface {
   latitude: number;
   longitude: number;
   address: string;
+  extra_comision: number;
 }

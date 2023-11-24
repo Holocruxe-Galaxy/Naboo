@@ -42,6 +42,9 @@ export class objStore {
 
   @IsNumber()
   store_lng: number;
+
+  @IsNumber()
+  extra_comision: number;
 }
 
 export class objHBLogin {
