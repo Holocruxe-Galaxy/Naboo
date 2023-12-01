@@ -12,15 +12,14 @@ export class FleteController {
   @Get(':access_key')
   testObtencionYActualización(
     @Param('access_key') access_key: string,
+    @Query('currentPage') currentPage: string,
     @Query('filtro') filtro: string,
   ) {
-    console.log(filtro);
-    return this.fleteService.getFletesByAccKey(access_key, filtro);
+    return this.fleteService.getFletesByAccKey(access_key, currentPage, filtro);
   }
 
   @Post()
   createFlete(@Body() fleteDto: FleteDto) {
-    console.log(fleteDto);
     return this.fleteService.solicitarFlete(fleteDto);
   }
 }

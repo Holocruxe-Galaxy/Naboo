@@ -4,7 +4,7 @@ import { Store } from './schema';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { HttpService } from '@nestjs/axios';
-import { objStore } from './dto/store.dto';
+import { objStore, updateCommissionDto } from './dto/store.dto';
 
 /*
  A ver. Si lo que yo tengo que hacer es crear la store cuando se registra o se logea
@@ -58,6 +58,19 @@ export class StoreService {
       return 'store configured correctly';
     } else {
       throw new HttpException('store not found', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async updateCommission(commissionDto: updateCommissionDto) {
+    const storeDb = await this.storeModel.findOne({
+      access_key: commissionDto.access_key,
+    });
+    if (storeDb) {
+      storeDb.extra_commission = commissionDto.extra_commission;
+      await storeDb.save();
+      return 'the extra commission was updated';
+    } else {
+      throw new HttpException('store not found', HttpStatus.NOT_FOUND);
     }
   }
 

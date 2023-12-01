@@ -29,6 +29,9 @@ export class Store extends Document {
 
   @Prop()
   store_lng: number;
+
+  @Prop()
+  extra_commission: string;
 }
 
 export const StoreSchema = SchemaFactory.createForClass(Store);

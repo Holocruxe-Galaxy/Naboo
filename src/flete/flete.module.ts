@@ -6,13 +6,19 @@ import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Flete, FleteSchema } from './schema';
 import { FleteGateway } from './flete.gateway';
-
+import { Store, StoreSchema } from '../store/schema/';
 @Module({
   imports: [
     MongooseModule.forFeature([
       {
         name: Flete.name,
         schema: FleteSchema,
+      },
+    ]),
+    MongooseModule.forFeature([
+      {
+        name: Store.name,
+        schema: StoreSchema,
       },
     ]),
     ConfigModule,
