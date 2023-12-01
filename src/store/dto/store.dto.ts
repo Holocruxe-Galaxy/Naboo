@@ -44,6 +44,15 @@ export class objStore {
   store_lng: number;
 }
 
+export class updateCommissionDto {
+  @IsNotEmpty()
+  @IsString()
+  access_key: string;
+  @IsNotEmpty()
+  @IsString()
+  extra_commission: string;
+}
+
 export class objHBLogin {
   @IsNotEmpty()
   @IsString()

@@ -12,13 +12,14 @@ import { Flete } from './schema';
 import { Model } from 'mongoose';
 import { FleteDto } from './dto/flete.dto';
 import { InjectModel } from '@nestjs/mongoose';
+import { Store } from 'src/store/schema';
 
 @Injectable()
 export class FleteService {
   constructor(
-    @InjectModel(Flete.name)
+    @InjectModel(Flete.name) private readonly fleteModel: Model<Flete>,
+    @InjectModel(Store.name) private readonly storeModel: Model<Store>,
     @Inject(forwardRef(() => ConfigService))
-    private readonly fleteModel: Model<Flete>,
     private configService: ConfigService,
     private readonly httpService: HttpService,
   ) {}
@@ -31,6 +32,23 @@ export class FleteService {
           flete as FleteSolicitude,
         )
       ).data;
+
+      const storeDb = await this.storeModel.findOne(
+        {
+          access_key: flete.acceso,
+        },
+        { extra_commission: true },
+      );
+
+      //Acá reemplazo el signo por un string vacío y hago la operación correspondiente para cada caso, por si no entendés preguntame jalu dea
+      const extraCommission = storeDb.extra_commission.includes('$')
+        ? Number(storeDb.extra_commission.replace(/\$/g, '')) +
+          Number(newFlete.resultado.total)
+        : Number(newFlete.resultado.total) +
+          (newFlete.resultado.total *
+            Number(storeDb.extra_commission.replace(/\%/g, ''))) /
+            100;
+
       const finalFlete = {
         acceso: flete.acceso,
         wc_order: flete.wc_order,
@@ -49,6 +67,8 @@ export class FleteService {
         tipo: newFlete.resultado.tipo,
         distancia: newFlete.resultado.distancia,
         total: newFlete.resultado.total,
+        extraCommission: storeDb.extra_commission,
+        totalWithCommission: extraCommission,
       };
       await this.fleteModel.create(finalFlete);
       return newFlete;
@@ -97,8 +117,13 @@ export class FleteService {
 
   async getFletesByAccKey(
     access_key: string,
+    currentPage?: string,
     filtro?: string,
   ): Promise<Flete[]> {
+    // const limit = 10;
+    // const page = currentPage || 1;
+    // const skip = limit * (Number(page) - 1);
+
     const fletesServicios = await this.fleteModel
       .find({ acceso: access_key })
       .select('-_id servicio')
@@ -148,6 +173,8 @@ export class FleteService {
           .exec();
         break;
     }
+    // const countDocuments = await this.fleteModel.countDocuments();
+    // console.log(fletes, countDocuments);
     return fletes;
   }
 }

@@ -65,6 +65,12 @@ export class Flete extends Document {
 
   @Prop()
   descripcion: string;
+
+  @Prop()
+  extraCommission: string;
+
+  @Prop()
+  totalWithCommission: string;
 }
 
 export const FleteSchema = SchemaFactory.createForClass(Flete);
