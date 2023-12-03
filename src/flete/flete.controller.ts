@@ -18,6 +18,14 @@ export class FleteController {
     return this.fleteService.getFletesByAccKey(access_key, currentPage, filtro);
   }
 
+  @Get('/totalPages/:access_key')
+  getTotalPages(
+    @Param('access_key') access_key: string,
+    @Query('filtro') filtro: string,
+  ) {
+    return this.fleteService.countTotalPages(access_key, filtro);
+  }
+
   @Post()
   createFlete(@Body() fleteDto: FleteDto) {
     return this.fleteService.solicitarFlete(fleteDto);
