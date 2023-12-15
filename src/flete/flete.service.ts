@@ -120,13 +120,15 @@ export class FleteService {
     currentPage?: string,
     filtro?: string,
   ): Promise<Flete[]> {
-    // const limit = 10;
-    // const page = currentPage || 1;
-    // const skip = limit * (Number(page) - 1);
+    let limit = 10;
+    let page = currentPage || 1;
+    let skip = limit * (Number(page) - 1);
 
     const fletesServicios = await this.fleteModel
       .find({ acceso: access_key })
       .select('-_id servicio')
+      .skip(skip)
+      .limit(limit)
       .exec();
 
     await this.actualizarFletes(fletesServicios, access_key);
@@ -138,6 +140,8 @@ export class FleteService {
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [0, 14, 5, 2] })
           .select('-__v -acceso')
+          .skip(skip)
+          .limit(limit)
           .exec();
         console.log('case 1');
         break;
@@ -146,6 +150,8 @@ export class FleteService {
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [9, 10] })
           .select('-__v -acceso')
+          .skip(skip)
+          .limit(limit)
           .exec();
         console.log('case 2');
         break;
@@ -154,6 +160,8 @@ export class FleteService {
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [3, 6, 16] })
           .select('-__v -acceso')
+          .skip(skip)
+          .limit(limit)
           .exec();
         console.log('case 3');
         break;
@@ -162,6 +170,8 @@ export class FleteService {
         fletes = await this.fleteModel
           .find({ acceso: access_key, estado: [8] })
           .select('-__v -acceso')
+          .skip(skip)
+          .limit(limit)
           .exec();
         console.log('case 4');
         break;
@@ -170,11 +180,64 @@ export class FleteService {
         fletes = await this.fleteModel
           .find({ acceso: access_key })
           .select('-__v -acceso')
+          .skip(skip)
+          .limit(limit)
           .exec();
         break;
     }
-    // const countDocuments = await this.fleteModel.countDocuments();
-    // console.log(fletes, countDocuments);
     return fletes;
+  }
+
+  async countTotalPages(access_key: string, filtro: string): Promise<object> {
+    const store = await this.storeModel.findOne({ access_key: access_key });
+    if (store) {
+      let fletes: number;
+      switch (filtro) {
+        case '1':
+          fletes = await this.fleteModel
+            .countDocuments({ acceso: access_key, estado: [0, 14, 5, 2] })
+
+            .exec();
+          console.log('case 1');
+          break;
+
+        case '2':
+          fletes = await this.fleteModel
+            .countDocuments({ acceso: access_key, estado: [9, 10] })
+
+            .exec();
+          console.log('case 2');
+          break;
+
+        case '3':
+          fletes = await this.fleteModel
+            .countDocuments({ acceso: access_key, estado: [3, 6, 16] })
+
+            .exec();
+          console.log('case 3');
+          break;
+
+        case '4':
+          fletes = await this.fleteModel
+            .countDocuments({ acceso: access_key, estado: [8] })
+
+            .exec();
+          console.log('case 4');
+          break;
+
+        default:
+          fletes = await this.fleteModel
+            .countDocuments({ acceso: access_key })
+
+            .exec();
+          break;
+      }
+
+      return {
+        totalPages: Math.ceil(fletes / 10),
+      };
+    } else {
+      throw new HttpException('store not found', HttpStatus.NOT_FOUND);
+    }
   }
 }
